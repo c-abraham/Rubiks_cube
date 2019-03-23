@@ -11,9 +11,49 @@
 #include "yellow_cross.h"
 #include "yellow_corners.h"
 #include <string>
+#include "windows.h"
 
 using namespace std;
 typedef void(cube::*p)();
+void Col(int value) {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), value);
+}
+void ClearScreen()
+{
+	HANDLE                     hStdOut;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	DWORD                      count;
+	DWORD                      cellCount;
+	COORD                      homeCoords = { 0, 0 };
+
+	hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (hStdOut == INVALID_HANDLE_VALUE) return;
+
+	/* Get the number of cells in the current buffer */
+	if (!GetConsoleScreenBufferInfo(hStdOut, &csbi)) return;
+	cellCount = csbi.dwSize.X *csbi.dwSize.Y;
+
+	/* Fill the entire buffer with spaces */
+	if (!FillConsoleOutputCharacter(
+		hStdOut,
+		(TCHAR) ' ',
+		cellCount,
+		homeCoords,
+		&count
+	)) return;
+
+	/* Fill the entire buffer with the current colors and attributes */
+	if (!FillConsoleOutputAttribute(
+		hStdOut,
+		csbi.wAttributes,
+		cellCount,
+		homeCoords,
+		&count
+	)) return;
+
+	/* Move the cursor home */
+	SetConsoleCursorPosition(hStdOut, homeCoords);
+}
 void shuffle(cube &c) {
 
 	srand(time(NULL));
@@ -24,67 +64,70 @@ void shuffle(cube &c) {
 }
 int main()
 {
-	std::string input;
+	std::cout << "Welcome to the Interface :)\n";
+
 	cube c;
 	c.print();
-	
-	while (getline(cin,input)) {
 
+	std::cout << "Commands: \n"; Col(9);
+	std::cout << "b, bi "; Col(7); std::cout << " rotate "; Col(9); std::cout << "blue     "; Col(15);
+	std::cout << "w, wi "; Col(7); std::cout << " rotate "; Col(15); std::cout << "white    "; Col(12);
+	std::cout << "r, ri "; Col(7); std::cout << " rotate "; Col(12); std::cout << "red\n"; Col(14);
+	std::cout << "y, yi "; Col(7); std::cout << " rotate "; Col(14); std::cout << "yellow   "; Col(10);
+	std::cout << "g, gi "; Col(7); std::cout << " rotate "; Col(10); std::cout << "green    "; Col(13);
+	std::cout << "p, pi "; Col(7); std::cout << " rotate "; Col(13); std::cout << "purple\n";
+	Col(15); std::cout << "sh";  Col(7); std::cout << " to shuffle cube     ";
+	Col(15); std::cout << "sl";  Col(7); std:: cout<< " to solve cube       ";
+	Col(15); std::cout << "q";   Col(7); std::cout<< " to exit\n\n";
+	std::cout << "input command: ";
+
+	std::string input;
+	while (getline(cin,input)) {
+		ClearScreen();
 		if (input == "q") {
 			break;
 		}
 		if (input == "y") {
 			c.rotate_yellow();
-			c.print();
 		}
 
 		if (input == "yi") {
 			c.rotate_yellowi();
-			c.print();
 		}
 
 		if (input == "w") {
 			c.rotate_white();
-			c.print();
 		}
 		if (input == "wi") {
 			c.rotate_whitei();
-			c.print();
 		}
 		if (input == "r") {
 			c.rotate_red();
-			c.print();
 		}
 		if (input == "ri") {
 			c.rotate_redi();
-			c.print();
 		}
 		if (input == "b") {
 			c.rotate_blue();
-			c.print();
 		}
 		if (input == "bi") {
 			c.rotate_bluei();
-			c.print();
 		}
 		if (input == "g") {
 			c.rotate_green();
-			c.print();
 		}
 		if (input == "gi") {
 			c.rotate_greeni();
-			c.print();
 		}
 		if (input == "p") {
 			c.rotate_purple();
-			c.print();
 		}
 		if (input == "pi") {
 			c.rotate_purplei();
-			c.print();
 		}
 		
-		if (input == "solve") {
+		if (input == "sl") {
+			std::cout << "solving cube\n";
 			white_cross(c);
 			c.print();
 			white_corners(c);
@@ -94,26 +137,25 @@ int main()
 			yellow_cross(c);
 			c.print();
 			yellow_corners(c);
-			c.print();
 		}
-		if (input == "shuffle") {
+		if (input == "sh") {
 			shuffle(c);
-			c.print();
+			ClearScreen();
+			std::cout << "shuffle\n";
 		}
-		if (input == "test") {
-			c.rotate_greeni();
-			c.rotate_yellow();
-			c.rotate_green();
-		}
-		
+		c.print();
+		std::cout << "Commands: \n"; Col(9);
+		std::cout << "b, bi "; Col(7); std::cout << " rotate "; Col(9); std::cout << "blue     "; Col(15);
+		std::cout << "w, wi "; Col(7); std::cout << " rotate "; Col(15); std::cout << "white    "; Col(12);
+		std::cout << "r, ri "; Col(7); std::cout << " rotate "; Col(12); std::cout << "red\n"; Col(14);
+		std::cout << "y, yi "; Col(7); std::cout << " rotate "; Col(14); std::cout << "yellow   "; Col(10);
+		std::cout << "g, gi "; Col(7); std::cout << " rotate "; Col(10); std::cout << "green    "; Col(13);
+		std::cout << "p, pi "; Col(7); std::cout << " rotate "; Col(13); std::cout << "purple\n";
+		Col(15); std::cout << "sh";  Col(7); std::cout << " to shuffle cube     ";
+		Col(15); std::cout << "sl";  Col(7); std::cout << " to solve cube       ";
+		Col(15); std::cout << "q";   Col(7); std::cout << " to exit\n\n";
+		std::cout << "input command: ";
 	}
-	
-	//swap_edges(c, 0);
-	//swap_edges(c, 2);
-	//c.print();
-	
-	//swap(c, 0);
-	//c.print();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

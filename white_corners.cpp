@@ -6,7 +6,7 @@ int * find_pieces(cube &c, int pos) {
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 3; j++) {
 			for (int k = 0; k < 3; k++) {
-				if (c.arr[i][j][k].col == 7 && c.arr[i][j][k].position == pos) {
+				if (c.arr[i][j][k].col == 15 && c.arr[i][j][k].position == pos) {
 					int r[3] = { i, j, k };
 					return r;
 				}
@@ -70,7 +70,7 @@ void bottom(cube &c, int position) {
 }
 void rotation(cube &c, int face, int position,int val) {
 	if ((face == 0 && position == 2 )||(face == 5 && position == 8)) {
-		while (!((c.arr[1][1][0].position == val) && (c.arr[1][1][0].col == 7))) {
+		while (!((c.arr[1][1][0].position == val) && (c.arr[1][1][0].col == 15))) {
 			c.rotate_white();
 		}
 		if (face == 0)
@@ -79,7 +79,7 @@ void rotation(cube &c, int face, int position,int val) {
 			right(c, 0);
 	}
 	else if (face == 3 && position == 2){
-		while (!((c.arr[1][1][0].position == val) && (c.arr[1][1][0].col == 7))) {
+		while (!((c.arr[1][1][0].position == val) && (c.arr[1][1][0].col == 15))) {
 			c.rotate_white();
 		}
 		bottom(c, position);
@@ -87,7 +87,7 @@ void rotation(cube &c, int face, int position,int val) {
 
 
 	else if ((face == 0 && position == 8) || (face == 2 && position == 2)) {
-		while (!((c.arr[1][0][1].position == val) && (c.arr[1][0][1].col == 7))) {
+		while (!((c.arr[1][0][1].position == val) && (c.arr[1][0][1].col == 15))) {
 			c.rotate_white();
 		}
 		if (face == 0)
@@ -96,7 +96,7 @@ void rotation(cube &c, int face, int position,int val) {
 			front(c, 2);
 	}
 	else if (face == 3 && position == 0) {
-		while (!((c.arr[1][0][1].position == val) && (c.arr[1][0][1].col == 7))) {
+		while (!((c.arr[1][0][1].position == val) && (c.arr[1][0][1].col == 15))) {
 			c.rotate_white();
 		}	
 		bottom(c, position);
@@ -104,7 +104,7 @@ void rotation(cube &c, int face, int position,int val) {
 
 
 	else if ((face == 2 && position == 8) || (face == 4 && position == 2)) {
-		while (!((c.arr[1][1][2].position == val) && (c.arr[1][1][2].col == 7))) {
+		while (!((c.arr[1][1][2].position == val) && (c.arr[1][1][2].col == 15))) {
 			c.rotate_white();
 		}
 		if (face == 2)
@@ -113,7 +113,7 @@ void rotation(cube &c, int face, int position,int val) {
 			front(c, 4);
 	}
 	else if (face == 3 && position == 6) {
-		while (!((c.arr[1][1][2].position == val) && (c.arr[1][1][2].col == 7))) {
+		while (!((c.arr[1][1][2].position == val) && (c.arr[1][1][2].col == 15))) {
 			c.rotate_white();
 		}
 		bottom(c, position);
@@ -121,7 +121,7 @@ void rotation(cube &c, int face, int position,int val) {
 
 
 	else if ((face == 4 && position == 8) || (face == 5 && position == 2)) {
-		while (!((c.arr[1][2][1].position == val) && (c.arr[1][2][1].col == 7))) {
+		while (!((c.arr[1][2][1].position == val) && (c.arr[1][2][1].col == 15))) {
 			c.rotate_white();
 		}
 		if (face == 4)
@@ -130,7 +130,7 @@ void rotation(cube &c, int face, int position,int val) {
 			front(c, 5);
 	}
 	else if (face == 3 && position == 8) {
-		while (!((c.arr[1][2][1].position == val) && (c.arr[1][2][1].col == 7))) {
+		while (!((c.arr[1][2][1].position == val) && (c.arr[1][2][1].col == 15))) {
 			c.rotate_white();
 		}
 		bottom(c, position);
@@ -243,7 +243,7 @@ void white_corners(cube &c) {
 	pos=find_position(c, 3, 1);
 	x = *(pos + 0);
 	y = *(pos + 1);
-	if (!(c.arr[1][x][y].position == 0 && c.arr[1][x][y].col == 7)) {
+	if (!(c.arr[1][x][y].position == 0 && c.arr[1][x][y].col == 15)) {
 		if (a == 1) {
 			change_pos(c, b * 3 + d, 3);
 		}
@@ -264,7 +264,7 @@ void white_corners(cube &c) {
 	pos = find_position(c, 1, 5);
 	x = *(pos + 0);
 	y = *(pos + 1);
-	if (!(c.arr[1][x][y].position == 2 && c.arr[1][x][y].col == 7)) {
+	if (!(c.arr[1][x][y].position == 2 && c.arr[1][x][y].col == 15)) {
 		if (a == 1) {
 			change_pos(c, b * 3 + d, 1);
 		}
@@ -282,10 +282,10 @@ void white_corners(cube &c) {
 	a = *(br + 0);
 	b = *(br + 1);
 	d = *(br + 2);
-	pos = find_position(c, 5, 7);
+	pos = find_position(c, 5, 15);
 	x = *(pos + 0);
 	y = *(pos + 1);
-	if (!(c.arr[1][x][y].position == 8 && c.arr[1][x][y].col == 7)) {
+	if (!(c.arr[1][x][y].position == 8 && c.arr[1][x][y].col == 15)) {
 		if (a == 1) {
 			change_pos(c, b * 3 + d, 5);
 		}
@@ -306,7 +306,7 @@ void white_corners(cube &c) {
 	pos = find_position(c, 7, 3);
 	x = *(pos + 0);
 	y = *(pos + 1);
-	if (!(c.arr[1][x][y].position == 6 && c.arr[1][x][y].col == 7)) {
+	if (!(c.arr[1][x][y].position == 6 && c.arr[1][x][y].col == 15)) {
 		if (a == 1) {
 			change_pos(c, b * 3 + d, 7);
 		}

@@ -14,15 +14,15 @@ cube::cube()
 				if (i == 0) 
 					temp.col = 9;//blue
 				if (i == 1)
-					temp.col = 7;//white
+					temp.col = 15;//white
 				if (i == 2)
-					temp.col = 4;//red
+					temp.col = 12;//red
 				if (i == 3)
 					temp.col = 14;//yellow
 				if (i == 4)
-					temp.col = 2;//green
+					temp.col = 10;//green
 				if (i == 5)
-					temp.col = 5;//purple
+					temp.col = 13;//purple
 				temp.position = k + j * 3;
 				arr[i][j][k] = temp;
 			}
@@ -598,11 +598,9 @@ void cube::rotate_z(int row) {
 	for (int i = 0; i < 3; i++) {
 		arr[3][i][row] = arr[4][row][i];
 	}
-
 	for (int i = 0; i < 3; i++) {
 		arr[4][row][2 - i] = arr[1][i][row];
 	}
-
 	arr[1][0][row] = temp0;
 	arr[1][1][row] = temp1;
 	arr[1][2][row] = temp2;
@@ -615,20 +613,17 @@ void cube::rotate_zi(int row) {
 	for (int i = 0; i < 3; i++) {
 		arr[0][row][i] = arr[1][2 - i][row];
 	}
-
 	for (int i = 0; i < 3; i++) {
 		arr[1][i][row] = arr[4][row][i];
 	}
-
 	for (int i = 0; i < 3; i++) {
 		arr[4][row][2 - i] = arr[3][i][row];
 	}
-
 	arr[3][0][row] = temp0;
 	arr[3][1][row] = temp1;
 	arr[3][2][row] = temp2;
-
 }
+
 //https://www.geeksforgeeks.org/inplace-rotate-square-matrix-by-90-degrees/
 void cube::rotate_matrixi(int face) {
 	int N = 3;
@@ -679,8 +674,8 @@ void SetColor(int value) {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), value);
 }
 void cube::print() {
+	std::cout << "\n";
 	for (int i = 0; i < 3; i++) {
-		
 		std::cout << "      ";
 		SetColor(arr[0][i][0].col); std::cout << arr[0][i][0].position << " ";
 		SetColor(arr[0][i][1].col); std::cout << arr[0][i][1].position << " ";

@@ -58,7 +58,7 @@ int * find_piece(cube &c, int pos) {
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 3; j++) {
 			for (int k = 0; k < 3; k++) {
-				if (c.arr[i][j][k].col == 7 && c.arr[i][j][k].position == pos) {
+				if (c.arr[i][j][k].col == 15 && c.arr[i][j][k].position == pos) {
 					int r[3] = { i, j, k };
 					return r;
 				}
@@ -80,23 +80,23 @@ void position_piece(cube &c, int face, int x, int y) {
 }
 void repositions_top(cube &c, int face,int val) {
 	if (face == 0) {
-		while (!((c.arr[1][1][0].position == val) && (c.arr[1][1][0].col==7))) {
+		while (!((c.arr[1][1][0].position == val) && (c.arr[1][1][0].col== 15))) {
 			c.rotate_white();
 		}
 	}
 	else if (face == 2||face ==3) {
 
-		while (!((c.arr[1][0][1].position == val) && (c.arr[1][0][1].col == 7) )){
+		while (!((c.arr[1][0][1].position == val) && (c.arr[1][0][1].col == 15) )){
 			c.rotate_white();
 		}
 	}
 	else if (face == 4) {
-		while (!((c.arr[1][1][2].position == val) && (c.arr[1][1][2].col == 7)) ){
+		while (!((c.arr[1][1][2].position == val) && (c.arr[1][1][2].col == 15)) ){
 			c.rotate_white();
 		}
 	}
 	else if (face == 5) {
-		while (!((c.arr[1][2][1].position == val )&& (c.arr[1][2][1].col == 7))) {
+		while (!((c.arr[1][2][1].position == val )&& (c.arr[1][2][1].col == 15))) {
 			c.rotate_white();
 		}
 	}
@@ -104,7 +104,7 @@ void repositions_top(cube &c, int face,int val) {
 }
 void check_top(cube &c, int x, int y,int val) {
 	if (x == 0&&y==1) {
-		if (!((c.arr[1][1][0].position == val) && (c.arr[1][1][0].col == 7))) {
+		if (!((c.arr[1][1][0].position == val) && (c.arr[1][1][0].col == 15))) {
 			c.rotate_blue();
 			repositions_top(c, 0, val);
 			c.rotate_bluei();
@@ -112,21 +112,21 @@ void check_top(cube &c, int x, int y,int val) {
 	}
 	else if (x == 1 && y == 2) {
 
-		if (!((c.arr[1][0][1].position == val) && (c.arr[1][0][1].col == 7))) {
+		if (!((c.arr[1][0][1].position == val) && (c.arr[1][0][1].col == 15))) {
 			c.rotate_red();
 			repositions_top(c, 2, val);
 			c.rotate_redi();
 		}
 	}
 	else if (x == 2 && y == 1) {
-		if (!((c.arr[1][1][2].position == val) && (c.arr[1][1][2].col == 7))) {
+		if (!((c.arr[1][1][2].position == val) && (c.arr[1][1][2].col == 15))) {
 			c.rotate_green();
 			repositions_top(c, 4, val);
 			c.rotate_greeni();
 		}
 	}
 	else if (x == 1 && y == 0) {
-		if (!((c.arr[1][2][1].position == val) && (c.arr[1][2][1].col == 7))) {
+		if (!((c.arr[1][2][1].position == val) && (c.arr[1][2][1].col == 15))) {
 			c.rotate_purple();
 			repositions_top(c, 5, val);
 			c.rotate_purplei();
