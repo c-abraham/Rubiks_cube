@@ -26,13 +26,6 @@ void left_algorithm(cube &c, int face) {
 	c.rotatei(face, "F'");
 }
 
-void wrong_orientation(cube &c, int face) {
-	//U R U' R' U' F' U F U2 U R U' R' U' F' U F
-	right_algorithm(c,face);
-	c.rotate_yellow();
-	c.rotate_yellow();
-	right_algorithm(c, face);
-}
 bool check(cube &c) {
 	for (int i = 0; i < 6; i++) {
 		if (c.arr[i][0][1].col != c.arr[i][1][1].col) {

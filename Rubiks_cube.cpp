@@ -58,9 +58,10 @@ void shuffle(cube &c) {
 
 	srand(time(NULL));
 	p asdf[] = { &cube::rotate_yellow, &cube::rotate_white, &cube::rotate_blue,
-							&cube::rotate_red, &cube::rotate_green, &cube::rotate_purple };
+				 &cube::rotate_red, &cube::rotate_green, &cube::rotate_purple ,
+				 &cube::rotate_x, &cube::rotate_z, &cube::rotate_y};
 	for (int i = 0; i < 100; i++)
-		(c.*asdf[rand() % 6])();
+		(c.*asdf[rand() % 9])();
 }
 int main()
 {
@@ -125,9 +126,29 @@ int main()
 		if (input == "pi") {
 			c.rotate_purplei();
 		}
+		if (input == "x") {
+			c.rotate_x();
+		}
+		if (input == "k") {
+			c.rotate_y();
+		}
+		if (input == "z") {
+			c.rotate_z();
+		}
+
+		if (input == "xi") {
+			c.rotate_xi();
+		}
+		if (input == "ki") {
+			c.rotate_yi();
+		}
+		if (input == "zi") {
+			c.rotate_zi();
+		}
 		
 		if (input == "sl") {
 			std::cout << "solving cube\n";
+			c.count = 0;
 			white_cross(c);
 			c.print();
 			white_corners(c);
@@ -137,6 +158,7 @@ int main()
 			yellow_cross(c);
 			c.print();
 			yellow_corners(c);
+			std::cout << "Solved the cube in " << c.count << " moves\n\n";
 		}
 		if (input == "sh") {
 			shuffle(c);

@@ -158,6 +158,16 @@ void reposistion(cube &c, int face,int val) {
 
 }
 void white_cross(cube &c) {
+	c.print();
+	while (c.arr[1][1][1].col != 15) {
+		if (c.arr[5][1][1].col == 15 || c.arr[2][1][1].col == 15)
+			c.rotate_x();
+		else
+			c.rotate_z();
+	}
+	while (c.arr[0][1][1].col != 9) {
+		c.rotate_y();
+	}
 	int * top;
 	int * right;
 	int * bottom;
@@ -171,7 +181,6 @@ void white_cross(cube &c) {
 	if (a != 1)
 		position_piece(c, a, b, d);
 	//solve white 1
-	c.print();
 	right = find_piece(c, 1);
 	a = *(right + 0);
 	b = *(right + 1);

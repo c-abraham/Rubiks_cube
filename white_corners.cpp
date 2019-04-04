@@ -243,6 +243,7 @@ void white_corners(cube &c) {
 	pos=find_position(c, 3, 1);
 	x = *(pos + 0);
 	y = *(pos + 1);
+	
 	if (!(c.arr[1][x][y].position == 0 && c.arr[1][x][y].col == 15)) {
 		if (a == 1) {
 			change_pos(c, b * 3 + d, 3);
@@ -255,6 +256,8 @@ void white_corners(cube &c) {
 			//apply algorithm
 		}
 	}
+	std::cout << "corner 0\n";
+	c.print();
 
 	//find corner 2
 	tr = find_pieces(c, 2);
@@ -264,6 +267,7 @@ void white_corners(cube &c) {
 	pos = find_position(c, 1, 5);
 	x = *(pos + 0);
 	y = *(pos + 1);
+	
 	if (!(c.arr[1][x][y].position == 2 && c.arr[1][x][y].col == 15)) {
 		if (a == 1) {
 			change_pos(c, b * 3 + d, 1);
@@ -276,7 +280,8 @@ void white_corners(cube &c) {
 			//apply algorithm
 		}
 	}
-
+	std::cout << "corner 2\n";
+	c.print();
 	//find bottom right
 	br = find_pieces(c, 8);
 	a = *(br + 0);
@@ -297,7 +302,8 @@ void white_corners(cube &c) {
 			//apply algorithm
 		}
 	}
-
+	std::cout << "corner 8\n";
+	c.print();
 	//find corner 7
 	bl = find_pieces(c, 6);
 	a = *(bl + 0);
@@ -318,6 +324,8 @@ void white_corners(cube &c) {
 			//apply algorithm
 		}
 	}
+	std::cout << "corner 6\n";
+	c.print();
 	while (c.arr[1][0][0].position != 0)
 		c.rotate_white();
 }
