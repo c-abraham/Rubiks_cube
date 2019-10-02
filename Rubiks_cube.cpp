@@ -63,13 +63,8 @@ void shuffle(cube &c) {
 	for (int i = 0; i < 100; i++)
 		(c.*asdf[rand() % 9])();
 }
-int main()
+void print_directions()
 {
-	std::cout << "Welcome to the Interface :)\n";
-
-	cube c;
-	c.print();
-
 	std::cout << "Commands: \n"; Col(9);
 	std::cout << "b, bi "; Col(7); std::cout << " rotate "; Col(9); std::cout << "blue     "; Col(15);
 	std::cout << "w, wi "; Col(7); std::cout << " rotate "; Col(15); std::cout << "white    "; Col(12);
@@ -82,6 +77,15 @@ int main()
 	Col(15); std::cout << "q";   Col(7); std::cout<< " to exit\n\n";
 	std::cout << "input command: ";
 
+}
+int main()
+{
+	std::cout << "Welcome to the Interface :)\n";
+
+	cube c;
+	c.print();
+	print_directions();
+	
 	std::string input;
 	while (getline(cin,input)) {
 		ClearScreen();
@@ -166,27 +170,6 @@ int main()
 			std::cout << "shuffle\n";
 		}
 		c.print();
-		std::cout << "Commands: \n"; Col(9);
-		std::cout << "b, bi "; Col(7); std::cout << " rotate "; Col(9); std::cout << "blue     "; Col(15);
-		std::cout << "w, wi "; Col(7); std::cout << " rotate "; Col(15); std::cout << "white    "; Col(12);
-		std::cout << "r, ri "; Col(7); std::cout << " rotate "; Col(12); std::cout << "red\n"; Col(14);
-		std::cout << "y, yi "; Col(7); std::cout << " rotate "; Col(14); std::cout << "yellow   "; Col(10);
-		std::cout << "g, gi "; Col(7); std::cout << " rotate "; Col(10); std::cout << "green    "; Col(13);
-		std::cout << "p, pi "; Col(7); std::cout << " rotate "; Col(13); std::cout << "purple\n";
-		Col(15); std::cout << "sh";  Col(7); std::cout << " to shuffle cube     ";
-		Col(15); std::cout << "sl";  Col(7); std::cout << " to solve cube       ";
-		Col(15); std::cout << "q";   Col(7); std::cout << " to exit\n\n";
-		std::cout << "input command: ";
+		print_directions();
 	}
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
